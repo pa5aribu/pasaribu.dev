@@ -1,5 +1,8 @@
+import gsap from 'gsap'
 const rive = require("@rive-app/canvas");
+
 import file from './../img/animation.riv'
+import Mouse from './components/mouse.js'
 
 const canvases = {
 	main: document.getElementById('main-canvas')
@@ -16,6 +19,7 @@ const r = new rive.Rive({
 		// make vector
     r.resizeDrawingSurfaceToCanvas()
 
+		const mouse = new Mouse()
     const inputs = r.stateMachineInputs("controller")
 
     const isMoving = inputs.find((i) => i.name === "isMoving")
@@ -24,8 +28,13 @@ const r = new rive.Rive({
 
     setTimeout(() => {
       isMoving.value = true
-      // y.value = 0
-
     }, 3150)
+
+		window.addEventListener('mousemove', e => {
+			const pos = mouse.move(e)
+			x.value = pos.x
+			y.value = pos.y
+		})
+		
   }
 });
