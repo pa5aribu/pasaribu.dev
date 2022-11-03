@@ -1,0 +1,25 @@
+{
+  "name": "pasaribu.dev",
+  "version": "1.0.0",
+  "description": "Creative Developer and Motion Designer",
+  "scripts": {
+    "start": "parcel src/pug/index.pug --open",
+    "build": "parcel build src/pug/index.pug"
+  },
+  "dependencies": {
+    "@parcel/transformer-stylus": "^2.7.0",
+    "@rive-app/canvas": "^1.0.71",
+    "@rive-app/webgl": "^1.0.89",
+    "parcel-bundler": "^1.12.5",
+    "rive-canvas": "^0.7.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "pug": "^3.0.2",
+    "typescript": "^4.4.4"
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.13.8"
+  },
+  "keywords": []
+}

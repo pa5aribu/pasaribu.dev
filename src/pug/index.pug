@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+
+	head
+		title #{name}
+		meta(charset="UTF-8")
+		link(rel="stylesheet" href="./../css/styles.styl")
+
+	body
+
+		header#header
+			.container
+				.header-nav
+					.header-logo Pasaribu.dev
+					.header-burger
+						include components/burger
+
+		section#intro
+			.container
+				.content-wrapper
+					.content
+						.intro-title #{name}
+						.intro-description I'm a Creative Developer and
+							| <br>Motion Designer from Indonesia
+					.canvas-wrapper
+						canvas#main-canvas(width="750" height="500")
+
+		script(type="module", src="./../js/app.js")
