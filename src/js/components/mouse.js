@@ -2,10 +2,15 @@ import gsap from 'gsap'
 
 export default class Mouse {
 	constructor(rivePos) {
+		this.customCursor = document.querySelector('.cursor')
 		this.pos = {
 			x: 0,
 			y: 0
 		}
+
+		window.addEventListener('mousemove', (e) => {
+			this.moveCursor(e)
+		})
 	}
 
 	move(e) {
@@ -16,6 +21,22 @@ export default class Mouse {
 		this.pos.y = progressY(e.clientY)
 
 		return this.pos
+	}
+
+	moveCursor(e) {
+		const x = e.clientX - (this.customCursor.clientWidth * 0.25)
+		const y = e.clientY - (this.customCursor.clientHeight * 0.25)
+		this.customCursor.style.cssText = `
+			transform: translate(${x}px, ${y}px)
+		`
+
+		if(e.target.nodeName == 'A') {
+			this.customCursor.classList.add('is-pointer')
+		} else {
+			this.customCursor.className = 'cursor'
+		}
+
+		console.log(e.target.nodeName)
 	}
 
 }

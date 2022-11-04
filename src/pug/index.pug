@@ -6,12 +6,15 @@ html(lang="en")
 		meta(charset="UTF-8")
 		link(rel="stylesheet" href="./../css/styles.styl")
 
-	body
+	body.no-cursor
+
+		.cursor
+			include components/cursor
 
 		header#header
 			.container
 				.header-nav
-					.header-logo Pasaribu.dev
+					a.header-logo(href="#") Pasaribu.dev
 					.header-burger
 						include components/burger
 

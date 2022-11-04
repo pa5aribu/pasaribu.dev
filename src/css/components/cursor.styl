@@ -1,0 +1,30 @@
+body.no-cursor
+	cursor none
+	a
+		cursor none
+
+.cursor
+	z-index 50
+	position fixed
+	top 0
+	left 0
+	width 40px
+	pointer-events none
+
+	svg
+		width 100%
+		display block
+	#pointer
+		opacity 0
+	// #pointer, #arrow
+	// 	transition .3s all ease
+	#boop
+		path
+			stroke-dashoffset 0
+			stroke-dasharray 0
+
+	&.is-pointer
+		#pointer
+			opacity 1
+		#arrow
+			opacity 0
