@@ -33,7 +33,7 @@ export default class Mouse {
 		if(e.target.nodeName == 'A' || e.target.classList.contains('is-pointer')) {
 			this.customCursor.classList.add('is-pointer')
 		} else {
-			this.customCursor.className = 'cursor'
+			this.customCursor.classList.remove('is-pointer')
 		}
 
 		console.log(e.target.nodeName)
