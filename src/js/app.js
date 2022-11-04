@@ -1,7 +1,7 @@
 import gsap from 'gsap'
 const rive = require("@rive-app/canvas");
 
-import file from './../img/new.riv'
+import file from './../img/laptop.riv'
 import Mouse from './components/mouse.js'
 
 const canvases = {
