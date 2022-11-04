@@ -1,20 +1,19 @@
-html {
-  height: -webkit-fill-available;
-}
-
 #intro
 	text-align center
 
 	.content-wrapper
-		min-height 100vh
-		height -webkit-fill-available
-		padding-top var(--header-height-desktop)
+		min-height -moz-available
+		min-height -webkit-fill-available
+		min-height fill-available
+		// min-height 100vh
 		display flex
 		flex-wrap wrap
 		> *
 			width 100%
 
 	.content
+		padding-top var(--header-height-desktop)
+		height 100%
 		margin-top auto
 
 	.intro-title
