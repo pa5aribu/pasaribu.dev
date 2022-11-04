@@ -1,7 +1,7 @@
 import gsap from 'gsap'
 const rive = require("@rive-app/canvas");
 
-import file from './../img/main.riv'
+import file from './../img/new.riv'
 import Mouse from './components/mouse.js'
 
 const canvases = {
@@ -32,6 +32,15 @@ const r = new rive.Rive({
 
 		window.addEventListener('mousemove', e => {
 			const pos = mouse.move(e)
+			if(isMoving.value)
+				x.value = pos.x
+				y.value = pos.y
+		})
+
+		window.addEventListener('touchmove', e => {
+			const touch = e.touches[0]
+			console.log(touch)
+			const pos = mouse.move(touch)
 			if(isMoving.value)
 				x.value = pos.x
 				y.value = pos.y

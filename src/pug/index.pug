@@ -4,6 +4,7 @@ html(lang="en")
 	head
 		title #{name}
 		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
 		link(rel="stylesheet" href="./../css/styles.styl")
 
 	body.no-cursor
@@ -15,17 +16,17 @@ html(lang="en")
 			.container
 				.header-nav
 					a.header-logo(href="#") Pasaribu.dev
-					.header-burger
+					.header-burger.is-pointer
 						include components/burger
 
 		section#intro
-			.container
-				.content-wrapper
-					.content
+			.content-wrapper
+				.content
+					.container
 						.intro-title #{name}
 						.intro-description I'm a Creative Developer and
 							| <br>Motion Designer from Indonesia
-					.canvas-wrapper
-						canvas#main-canvas(width="750" height="500")
+				.canvas-wrapper
+					canvas#main-canvas(width="750" height="500")
 
 		script(type="module", src="./../js/app.js")

@@ -1,0 +1,81 @@
+square(val)
+	width val
+	height val
+
+side(val)
+	left val
+	right val
+
+pxto(value, unit)
+	u = unit(value)
+	if (u is 'px')
+		return unit(value/16, unit)
+	else
+		return unit(value, u)
+
+animFlix()
+	-webkit-backface-visibility hidden
+	// will-change opacity
+
+repeatAnim(length, duration, delay)
+	for num, i in (1..length)
+		&:nth-child({num})
+			transition-delay (duration * i) + delay
+
+topRight(val)
+	top val
+	right val
+
+bottomRight(val)
+	right val
+	bottom val
+
+calcvh(operator, val)
+	if(operator is '+')
+		return "calc(100vh + %s)" % val
+	else
+		return "calc(100vh - %s)" % val
+
+calc50(operator, val)
+	if(operator is '+')
+		return "calc(50% + %s)" % val
+	else
+		return "calc(50% - %s)" % val
+
+makeBlockGap(gapDesktop, gapMobile, gapSmall = gapMobile)
+	margin gapDesktop * -.5
+	> div
+		padding (gapDesktop / 2)
+	+below(xl)
+		margin gapMobile * -.5
+		> div
+			padding (gapMobile / 2)
+	+below(md)
+		margin gapSmall * -.5
+		> div
+			padding (gapSmall / 2)
+
+hideFlyAnim(gap)
+	opacity 0
+	transform translateY(gap)
+	transition .3s all ease
+
+showFlyAnim()
+	opacity 1
+	transform none
+
+removeMargin()
+	margin-right (mobilePadding * -1)
+	margin-left (mobilePadding * -1)
+
+viewport-width = 1920px
+
+px2vw(val)
+	unit(val / viewport-width * 100, vw)
+
+roundChart(circleWidth, fontSize)
+	.number
+		width circleWidth
+		height circleWidth
+		line-height circleWidth
+		font-size fontSize

@@ -17,11 +17,24 @@
 		margin-bottom 10px
 	.intro-description
 		font-size 30px
+		line-height 1.5
 
 	.canvas-wrapper
 		margin-top auto
 	#main-canvas
-		width 55%
+		width 45%
 		max-width 100%
 		display block
 		margin auto
+
+	// responsive
+	+below(md)
+
+		#main-canvas
+			width 100%	
+
+		.intro-title
+			font-size 50px
+			margin-bottom 20px
+		.intro-description
+			font-size 26px

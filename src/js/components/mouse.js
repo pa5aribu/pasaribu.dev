@@ -30,7 +30,7 @@ export default class Mouse {
 			transform: translate(${x}px, ${y}px)
 		`
 
-		if(e.target.nodeName == 'A') {
+		if(e.target.nodeName == 'A' || e.target.classList.contains('is-pointer')) {
 			this.customCursor.classList.add('is-pointer')
 		} else {
 			this.customCursor.className = 'cursor'
