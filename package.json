@@ -12,8 +12,7 @@
     "@rive-app/webgl": "^1.0.89",
     "components": "^0.1.0",
     "gsap": "npm:@gsap/shockingly@^3.11.3",
-    "parcel-bundler": "^1.12.5",
-    "rive-canvas": "^0.7.6"
+    "parcel-bundler": "^1.12.5"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",

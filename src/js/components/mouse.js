@@ -1,7 +1,7 @@
 import gsap from 'gsap'
 
 export default class Mouse {
-	constructor() {
+	constructor(rivePos) {
 		this.pos = {
 			x: 0,
 			y: 0

@@ -1,7 +1,7 @@
 import gsap from 'gsap'
 const rive = require("@rive-app/canvas");
 
-import file from './../img/animation.riv'
+import file from './../img/main.riv'
 import Mouse from './components/mouse.js'
 
 const canvases = {
@@ -23,8 +23,8 @@ const r = new rive.Rive({
     const inputs = r.stateMachineInputs("controller")
 
     const isMoving = inputs.find((i) => i.name === "isMoving")
-    const x = inputs.find((i) => i.name === "translate x")
-    const y = inputs.find((i) => i.name === "translate y")
+    const x = inputs.find((i) => i.name === "translateX")
+    const y = inputs.find((i) => i.name === "translateY")
 
     setTimeout(() => {
       isMoving.value = true
@@ -32,8 +32,9 @@ const r = new rive.Rive({
 
 		window.addEventListener('mousemove', e => {
 			const pos = mouse.move(e)
-			x.value = pos.x
-			y.value = pos.y
+			if(isMoving.value)
+				x.value = pos.x
+				y.value = pos.y
 		})
 		
   }
