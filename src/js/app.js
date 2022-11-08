@@ -1,50 +1,100 @@
+const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
-const rive = require("@rive-app/canvas");
-
-import file from './../img/laptop.riv'
-import Mouse from './components/mouse.js'
+import { GUI } from 'dat.gui';
+import file from './../img/main5.riv'
+import mouse from './components/mouse.js'
 
 const canvases = {
 	main: document.getElementById('main-canvas')
 }
 
-const r = new rive.Rive({
-  src: file,
-  artboard: 'Bhakti',
-  stateMachines: 'controller',
-  canvas: canvases.main,
-  autoplay: true,
-  onLoad: e => {
+class App {
+	constructor() {
+		this.rive
+		this.riveInputs = {}
+		this.mouse = new mouse()
+		this.gui = new GUI()
 
-		// make vector
-    r.resizeDrawingSurfaceToCanvas()
+		this.setRive()
+	}
 
-		const mouse = new Mouse()
-    const inputs = r.stateMachineInputs("controller")
+	setGUI() {
+		const settings = {}
+		settings.about = () => {
+			this.riveInputs.isMoving.value = false
+			this.riveInputs.sectionAbout.fire()
+			const tl = gsap.timeline()
+			tl
+				.to(this.riveInputs.y, {
+					value: -100
+				})
+				.to(this.riveInputs.x, {
+					value: 50
+				}, 0)
+		}
+		settings.intro = () => {
+			this.riveInputs.isMoving.value = true
+			this.riveInputs.sectionIntro.fire()
+		}
+		const triggers = this.gui.addFolder('Triggers')
+		triggers.open()
+		triggers.add(settings, 'about')
+		triggers.add(settings, 'intro')
+	}
 
-    const isMoving = inputs.find((i) => i.name === "isMoving")
-    const x = inputs.find((i) => i.name === "translateX")
-    const y = inputs.find((i) => i.name === "translateY")
+	setRive() {
+		this.rive = new rive.Rive({
+			src: file,
+			artboard: 'Bhakti',
+			stateMachines: 'controller',
+			canvas: canvases.main,
+			autoplay: true,
+			onLoad: e => { this.playRive() },
+			onStateChange: e => { this.stateRive(e) }
+		})
+	}
 
-    setTimeout(() => {
-      isMoving.value = true
-    }, 3150)
+	playRive() {
+		this.rive.resizeDrawingSurfaceToCanvas()
+
+		const inputs = this.rive.stateMachineInputs('controller')
+
+		this.riveInputs = {
+			isMoving: inputs.find((i) => i.name === 'isMoving'),
+			isBlinking: inputs.find((i) => i.name === 'isBlinking'),
+			x: inputs.find((i) => i.name === 'translateX'),
+			y: inputs.find((i) => i.name === 'translateY'),
+			sectionAbout: inputs.find((i) => i.name === 'sectionAbout'),
+			sectionIntro: inputs.find((i) => i.name === 'sectionIntro'),
+		}
+		this.setGUI()
 
 		window.addEventListener('mousemove', e => {
-			const pos = mouse.move(e)
-			if(isMoving.value)
-				x.value = pos.x
-				y.value = pos.y
+			const pos = this.mouse.move(e)
+			if(this.riveInputs.isMoving.value) {
+				this.riveInputs.x.value = pos.x
+				this.riveInputs.y.value = pos.y
+			}
 		})
 
-		window.addEventListener('touchmove', e => {
-			const touch = e.touches[0]
-			console.log(touch)
-			const pos = mouse.move(touch)
-			if(isMoving.value)
-				x.value = pos.x
-				y.value = pos.y
-		})
-		
-  }
-});
+		// window.addEventListener('touchmove', e => {
+		// 	const touch = e.touches[0]
+		// 	const pos = this.mouse.move(touch)
+		// 	if(this.riveInputsisMoving.value)
+		// 		this.riveInputs.x.value = pos.x
+		// 		this.riveInputs.y.value = pos.y
+		// })
+	}
+
+	stateRive(e) {
+		const data = e.data
+		if(data[0] == 'breath') {
+			this.riveInputs.isMoving.value = true
+			this.riveInputs.isBlinking.value = true
+		}
+
+		console.log(data)
+	}
+}
+
+new App()

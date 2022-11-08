@@ -35,8 +35,6 @@ export default class Mouse {
 		} else {
 			this.customCursor.classList.remove('is-pointer')
 		}
-
-		console.log(e.target.nodeName)
 	}
 
 }
