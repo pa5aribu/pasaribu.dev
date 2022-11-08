@@ -10,9 +10,9 @@ const canvases = {
 
 class App {
 	constructor() {
+		this.body = document.body
 		this.rive
 		this.riveInputs = {}
-		this.mouse = new mouse()
 		this.gui = new GUI()
 
 		this.setRive()
@@ -33,8 +33,20 @@ class App {
 				}, 0)
 		}
 		settings.intro = () => {
-			this.riveInputs.isMoving.value = true
 			this.riveInputs.sectionIntro.fire()
+			const tl = gsap.timeline({
+				onComplete: () => {
+					this.riveInputs.isMoving.value = true
+				}
+			})
+
+			tl
+				.to(this.riveInputs.x, {
+					value: () => this.body.getAttribute('data-mouse-x')
+				})
+				.to(this.riveInputs.y, {
+					value: () => this.body.getAttribute('data-mouse-y')
+				}, 0)
 		}
 		const triggers = this.gui.addFolder('Triggers')
 		triggers.open()
@@ -69,21 +81,7 @@ class App {
 		}
 		this.setGUI()
 
-		window.addEventListener('mousemove', e => {
-			const pos = this.mouse.move(e)
-			if(this.riveInputs.isMoving.value) {
-				this.riveInputs.x.value = pos.x
-				this.riveInputs.y.value = pos.y
-			}
-		})
-
-		// window.addEventListener('touchmove', e => {
-		// 	const touch = e.touches[0]
-		// 	const pos = this.mouse.move(touch)
-		// 	if(this.riveInputsisMoving.value)
-		// 		this.riveInputs.x.value = pos.x
-		// 		this.riveInputs.y.value = pos.y
-		// })
+		this.mouse = new mouse(this.riveInputs)
 	}
 
 	stateRive(e) {
