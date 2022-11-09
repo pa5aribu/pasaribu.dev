@@ -2,7 +2,8 @@ const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
 import file from './../img/main5.riv'
-import mouse from './components/mouse.js'
+import mouse from './components/mouse'
+import fixedScroll from './components/scroll'
 
 const canvases = {
 	main: document.getElementById('main-canvas')
@@ -14,7 +15,7 @@ class App {
 		this.rive
 		this.riveInputs = {}
 		this.gui = new GUI()
-
+		this.gui.hide()
 		this.setRive()
 	}
 
@@ -22,15 +23,22 @@ class App {
 		const settings = {}
 		settings.about = () => {
 			this.riveInputs.isMoving.value = false
-			this.riveInputs.sectionAbout.fire()
 			const tl = gsap.timeline()
 			tl
-				.to(this.riveInputs.y, {
-					value: -100
+				.to(canvases.main, {
+					x: '60%',
+					duration: 1,
+					ease: 'power4.out'
 				})
+				.to(this.riveInputs.y, {
+					value: -100,
+					onComplete: () => {
+						this.riveInputs.sectionAbout.fire()
+					}
+				}, .3)
 				.to(this.riveInputs.x, {
 					value: 50
-				}, 0)
+				}, '<')
 		}
 		settings.intro = () => {
 			this.riveInputs.sectionIntro.fire()
@@ -82,6 +90,7 @@ class App {
 		this.setGUI()
 
 		this.mouse = new mouse(this.riveInputs)
+		this.scroll = new fixedScroll(this.riveInputs)
 	}
 
 	stateRive(e) {
@@ -91,7 +100,7 @@ class App {
 			this.riveInputs.isBlinking.value = true
 		}
 
-		console.log(data)
+		// console.log(data)
 	}
 }
 
