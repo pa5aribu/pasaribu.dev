@@ -90,7 +90,7 @@ class App {
 		this.setGUI()
 
 		this.mouse = new mouse(this.riveInputs)
-		this.scroll = new fixedScroll(this.riveInputs)
+		this.scroll = new fixedScroll(this.riveInputs, this.mouse)
 	}
 
 	stateRive(e) {

@@ -29,14 +29,14 @@ export default class Mouse {
 
 		document.addEventListener('mouseleave', (event) => {
 			this.isOutside = true
-			const tl = gsap.timeline()
-			tl
-				.to(this.inputs.x, {
-					value: 50
-				})
-				.to(this.inputs.y, {
-					value: 50
-				}, 0)
+			// const tl = gsap.timeline()
+			// tl
+			// 	.to(this.inputs.x, {
+			// 		value: 50
+			// 	})
+			// 	.to(this.inputs.y, {
+			// 		value: 50
+			// 	}, 0)
 		})
 
 		this.update()
@@ -53,42 +53,43 @@ export default class Mouse {
 		const progressX = gsap.utils.mapRange(0, window.innerWidth, 0, 100)
 		const progressY = gsap.utils.mapRange(0, window.innerHeight, 100, 0)
 
+		const yoX = gsap.utils.mapRange(0, window.innerWidth, 50, 50)
+		const yoY = gsap.utils.mapRange(0, window.innerHeight, 50, 50)
+
+		// this.customCursor.style.cssText = `
+		// 	transform: translate(${this.pos.x}px, ${this.pos.y}px)
+		// `
+
+
 		if(!this.isOutside) {
 
-			this.pos.x += (this.mouse.x - this.pos.x) * this.ease
-			this.pos.y += (this.mouse.y - this.pos.y) * this.ease
-
-			this.customCursor.style.cssText = `
-				transform: translate(${this.pos.x}px, ${this.pos.y}px)
-			`
-
-			this.posRange = {
-				x: progressX(this.pos.x),
-				y: progressY(this.pos.y)
-			}
-
 			if(this.inputs.isMoving.value) {
-				this.inputs.x.value = this.posRange.x
-				this.inputs.y.value = this.posRange.y
+				this.pos.x += (this.mouse.x - this.pos.x) * this.ease
+				this.pos.y += (this.mouse.y - this.pos.y) * this.ease
+
+				this.posRange = {
+					x: progressX(this.pos.x),
+					y: progressY(this.pos.y)
+				}
 			}
+				// this.posRange = {
+				// 	x: yoX(this.pos.x),
+				// 	y: yoY(this.pos.y)
+				// }
+			// }
+			this.inputs.x.value = this.posRange.x
+			this.inputs.y.value = this.posRange.y
 
 		} else {
-			this.pos = {
-				x: window.innerWidth/2,
-				y: window.innerHeight/2
-			}
-			this.mouse = {
-				x: window.innerWidth/2,
-				y: window.innerHeight/2
-			}
-			this.posRange = {
-				x: 50,
-				y: 50
-			}
+			// this.setPos(window.innerWidth/2, window.innerHeight/2)
+			// this.posRange = {
+			// 	x: 50,
+			// 	y: 50
+			// }
 		}
 
-		this.body.setAttribute('data-mouse-x', this.posRange.x)
-		this.body.setAttribute('data-mouse-y', this.posRange.y)
+		// this.body.setAttribute('data-mouse-x', this.posRange.x)
+		// this.body.setAttribute('data-mouse-y', this.posRange.y)
 
 		requestAnimationFrame(this.update.bind(this))
 	}
@@ -99,6 +100,21 @@ export default class Mouse {
 		} else {
 			this.customCursor.classList.remove('is-pointer')
 		}
+	}
+
+	setPos(x, y) {
+		this.pos = {
+			x: x,
+			y: y
+		}
+		this.mouse = {
+			x: x,
+			y: y
+		}
+	}
+
+	animatePosition() {
+
 	}
 
 }
