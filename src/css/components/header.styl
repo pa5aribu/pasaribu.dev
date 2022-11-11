@@ -10,23 +10,76 @@
 	text-decoration none
 	font-weight 400
 
-.header-nav
+.header-inner
 	display flex
 	flex-wrap wrap
 	justify-content space-between
 	align-items center
 	height var(--header-height-desktop)
+	position relative
 
-.burger-menu
-	width 50px
-	height 50px
-	padding 12px
-	background white
-	border-radius 50%
-	display flex
-	align-items center
+.header-nav
+	padding 20px
+	li:not(:last-child)
+		margin-bottom 5px
+	a
+		display block
+		background #eee
+		padding 12px 15px
+		border-radius 10px
+		text-decoration none
+		color black
+
+.burger-menu-wrapper
 	border 2px solid black
 	box-shadow 3px 3px 0 0 black
-	svg
-		display block
+	border-radius 28px
+	width 50px
+	height 50px
+	position relative
+	box-sizing content-box
+	background white
+	transition .45s all var(--ease-quart)
+	position absolute
+	top 50%
+	margin-top -25px
+	right 0
+	overflow hidden
+
+	&.is-active
+		border-radius 25px
+		box-shadow 4px 4px 0 0 black
+		width 250px
+		height 300px
+		.burger-menu
+			background var(--red)
+			transform scale(.5)
+		.bar
+			&:first-child
+				transform rotate(45deg) translate(3px, -3px)
+			&:nth-child(2)
+				opacity 0
+			&:last-child
+				transform rotate(-45deg) translate(5px, -5px)
+
+.burger-menu
+	margin-left auto
+	display flex
+	flex-wrap wrap
+	align-items center
+	justify-content center
+	width 50px
+	height 50px
+	border-radius 50%
+	padding 14px
+	box-sizing border-box
+	cursor pointer
+	transition .3s all var(--ease-quart)
+	.bar
 		width 100%
+		height 3px
+		border-radius 5px
+		background black
+		transition .3s all var(--ease-quart)
+		&:first-child
+			transform-origin top left

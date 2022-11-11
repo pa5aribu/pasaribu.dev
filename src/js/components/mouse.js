@@ -2,9 +2,8 @@ import gsap from 'gsap'
 
 export default class Mouse {
 	constructor(inputs) {
-		this.customCursor = document.querySelector('.cursor')
 		this.body = document.body
-		this.isOutside = false
+		this.customCursor = document.querySelector('.cursor')
 
 		this.pos = {
 			x: window.innerWidth/2,
@@ -14,29 +13,23 @@ export default class Mouse {
 			x: window.innerWidth/2,
 			y: window.innerHeight/2
 		}
-		this.posRange = { x: 0, y: 0 }
-
 		this.ease = .25
+		this.posRange = { x: 0, y: 0 }
 		this.inputs = inputs
-		this.firstMove = false
 
 		window.addEventListener('mousemove', (e) => {
-			this.firstMove = true
-			this.isOutside = false
 			this.move(e)
 			this.moveCursor(e)
 		})
 
-		document.addEventListener('mouseleave', (event) => {
-			this.isOutside = true
-			// const tl = gsap.timeline()
-			// tl
-			// 	.to(this.inputs.x, {
-			// 		value: 50
-			// 	})
-			// 	.to(this.inputs.y, {
-			// 		value: 50
-			// 	}, 0)
+		document.addEventListener('mouseleave', (e) => {
+			this.customCursor.style.visibility = 'hidden'
+			setTimeout(() => {
+				gsap.to([this.pos, this.mouse], {
+					x: window.innerWidth/2,
+					y: window.innerHeight/2
+				})
+			}, 5000)
 		})
 
 		this.update()
@@ -47,49 +40,34 @@ export default class Mouse {
 			x: e.clientX,
 			y: e.clientY
 		}
+
+		const cursorPos = {
+			x: e.clientX - (this.customCursor.clientWidth * 0.25),
+			y: e.clientY - (this.customCursor.clientWidth * 0.25)
+		}
+
+		this.customCursor.style.cssText = `
+			transform: translate(${cursorPos.x}px, ${cursorPos.y}px)
+		`
 	}
 
 	update(e) {
 		const progressX = gsap.utils.mapRange(0, window.innerWidth, 0, 100)
 		const progressY = gsap.utils.mapRange(0, window.innerHeight, 100, 0)
 
-		const yoX = gsap.utils.mapRange(0, window.innerWidth, 50, 50)
-		const yoY = gsap.utils.mapRange(0, window.innerHeight, 50, 50)
 
-		// this.customCursor.style.cssText = `
-		// 	transform: translate(${this.pos.x}px, ${this.pos.y}px)
-		// `
+		if(this.inputs.isMoving.value) {
+			this.pos.x += (this.mouse.x - this.pos.x) * this.ease
+			this.pos.y += (this.mouse.y - this.pos.y) * this.ease
 
-
-		if(!this.isOutside) {
-
-			if(this.inputs.isMoving.value) {
-				this.pos.x += (this.mouse.x - this.pos.x) * this.ease
-				this.pos.y += (this.mouse.y - this.pos.y) * this.ease
-
-				this.posRange = {
-					x: progressX(this.pos.x),
-					y: progressY(this.pos.y)
-				}
+			this.posRange = {
+				x: progressX(this.pos.x),
+				y: progressY(this.pos.y)
 			}
-				// this.posRange = {
-				// 	x: yoX(this.pos.x),
-				// 	y: yoY(this.pos.y)
-				// }
-			// }
-			this.inputs.x.value = this.posRange.x
-			this.inputs.y.value = this.posRange.y
-
-		} else {
-			// this.setPos(window.innerWidth/2, window.innerHeight/2)
-			// this.posRange = {
-			// 	x: 50,
-			// 	y: 50
-			// }
 		}
 
-		// this.body.setAttribute('data-mouse-x', this.posRange.x)
-		// this.body.setAttribute('data-mouse-y', this.posRange.y)
+		this.inputs.x.value = this.posRange.x
+		this.inputs.y.value = this.posRange.y
 
 		requestAnimationFrame(this.update.bind(this))
 	}

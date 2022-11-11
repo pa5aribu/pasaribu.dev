@@ -9,17 +9,27 @@ html(lang="en")
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
 
-	body.no-curso
+	body.no-cursor
 
-		.cursor.is-dark
+		.cursor.is-dar(style="visibility: hidden")
 			include components/cursor
 
 		header#header
 			.container
-				.header-nav
+				.header-inner
 					a.header-logo(href="#") Pasaribu.dev
-					.header-burger.is-pointer
-						include components/burger
+					.burger-menu-wrapper
+						.burger-menu.is-pointer
+							.bar
+							.bar
+							.bar
+						ul.header-nav
+							li
+								a(href="") About
+							li
+								a(href="") Work
+							li
+								a(href="") Contact
 
 		section#intro
 			.content-wrapper
