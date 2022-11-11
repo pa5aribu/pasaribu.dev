@@ -1,0 +1,33 @@
+section#intro
+	height 100%
+	text-align center
+
+	.container
+		display grid
+		align-items center
+		height 100%
+
+	.intro-title
+		font-size 90px
+		font-weight 600
+		font-family var(--font-display)
+		text-transform uppercase
+		line-height 1.2
+		letter-spacing 2px
+		margin-bottom 15px
+
+	.intro-description
+		font-size 30px
+		line-height 1.4
+		opacity .7
+
+	// responsive
+	+below(md)
+		#main-canvas
+			width 100%	
+		.intro-title
+			font-size 60px
+			margin-bottom 20px
+			letter-spacing inherit
+		.intro-description
+			font-size 26px

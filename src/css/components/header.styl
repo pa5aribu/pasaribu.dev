@@ -30,19 +30,34 @@
 		text-decoration none
 		color black
 
-.burger-menu-wrapper
-	border 2px solid black
-	box-shadow 3px 3px 0 0 black
+.header-buttons
+	display grid
+	grid-template-columns 1fr 1fr
+	grid-gap 10px
+
+.header-button
 	border-radius 28px
 	width 50px
 	height 50px
-	position relative
+	display block
 	box-sizing content-box
-	background white
-	transition .45s all var(--ease-quart)
-	position absolute
-	top 50%
-	margin-top -25px
+	border 2px solid black
+	transition .3s all var(--ease-quart)
+	position relative
+	&:hover
+		translate -3px -3px
+		box-shadow 3px 3px 0 0 black
+
+	svg
+		display block
+
+.burger-menu-wrapper
+	position relative
+	// position absolute
+	// top 50%
+	// margin-top -25px
+	// background white
+	transition .3s all var(--ease-quart)
 	right 0
 	overflow hidden
 

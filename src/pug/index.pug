@@ -11,36 +11,48 @@ html(lang="en")
 
 	body.no-cursor
 
+		include components/icons
+
 		.cursor.is-dar(style="visibility: hidden")
 			include components/cursor
 
-		header#header
-			.container
-				.header-inner
-					a.header-logo(href="#") Pasaribu.dev
-					.burger-menu-wrapper
-						.burger-menu.is-pointer
-							.bar
-							.bar
-							.bar
-						ul.header-nav
-							li
-								a(href="") About
-							li
-								a(href="") Work
-							li
-								a(href="") Contact
+		main#app
+			header#header
+				.container-fluid
+					.header-inner
+						a.header-logo(href="#") Pasaribu.dev
+						.header-buttons
+							.customize-button.header-button.is-pointer
+								svg(viewBox="0 0 50 50")
+									use(href="#customize")
+							.burger-menu-wrapper.header-button
+								.burger-menu.is-pointer
+									.bar
+									.bar
+									.bar
+								ul.header-nav
+									li
+										a(href="") About
+									li
+										a(href="") Work
+									li
+										a(href="") Contact
 
-		section#intro
-			.content-wrapper
-				.content
+			.sections-wrapper
+				section#intro
 					.container
-						.intro-title #{name}
-						.intro-description I'm a Creative Developer and
-							| <br>Motion Designer from Indonesia
-				.canvas-wrapper
-					canvas#main-canvas(width="750" height="500")
+						.content
+							.intro-title #{name}
+							p.intro-description I'm a Creative Developer and
+								| <br>Motion Designer from Indonesia
+				section#about.is-hidden
+					.container
+						.content
+							.section-title About Me
+							.section-description
+								p I have 7 years of experience as a creative developer.<br>I've worked with various clients and build cool animations for them.
 
-		section#about
+			.canvas-wrapper
+				canvas#main-canvas(width="750" height="500")
 
 		script(type="module", src="./../js/app.js")
