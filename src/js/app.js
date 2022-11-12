@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import file from './../img/2.riv'
+import file from './../img/0.riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -50,13 +50,16 @@ class App {
 			sectionIntro: inputs.find((i) => i.name === 'sectionIntro'),
 		}
 
+		// console.log(this.riveInputs.isMoving.value = true)
+
 		this.mouse = new mouse(this.riveInputs)
 		this.scroll = new fixedScroll(this.riveInputs, this.mouse)
 	}
 
 	stateRive(e) {
 		const data = e.data
-		if(data[0] == 'breath') {
+		console.log(data[0])
+		if(data[0] == 'is-breathing') {
 			this.riveInputs.isMoving.value = true
 			this.riveInputs.isBlinking.value = true
 		}
