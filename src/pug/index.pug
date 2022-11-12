@@ -39,7 +39,7 @@ html(lang="en")
 										a(href="") Contact
 
 			.sections-wrapper
-				section#intro
+				section#intro.is-hidde
 					.container
 						.content
 							.intro-title #{name}
@@ -48,9 +48,13 @@ html(lang="en")
 				section#about.is-hidden
 					.container
 						.content
-							.section-title About Me
+							.section-title who am i?
 							.section-description
-								p I have 7 years of experience as a creative developer.<br>I've worked with various clients and build cool animations for them.
+								p
+									| I'm a front-end creative developer with extensive motion design skills.<br>
+									| My current stack: HTML, CSS, JS, SVG, WebGL, Figma, Rive, and Blender.
+							.button-wrapper
+								.button.is-pointer Download Resume
 
 			.canvas-wrapper
 				canvas#main-canvas(width="750" height="500")

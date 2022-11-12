@@ -52,6 +52,8 @@ export default class fixedScroll {
 				}
 			})
 
+			// this.body.style.background = '#ffebe7'
+
 			tl
 				.to([this.mouse.pos, this.mouse.mouse], {
 					onStart: () => {
@@ -71,7 +73,7 @@ export default class fixedScroll {
 					stagger: .1
 				}, 0)
 				.set(lastSection, {
-					display: 'none',
+					clearProps: 'all'
 				})
 				.set(last$('.content > *'), {
 					clearProps: 'all'
@@ -109,10 +111,11 @@ export default class fixedScroll {
 			const tl = gsap.timeline({
 				onComplete: () => {
 					this.isAnimating = false
-					this.inputs.isMoving.value = false
 					this.currentIndex += 1
 				}
 			})
+
+			// this.body.style.background = 'black'
 
 			tl
 				.to([this.mouse.pos, this.mouse.mouse], {
@@ -121,7 +124,10 @@ export default class fixedScroll {
 					},
 					x: window.innerWidth/2,
 					y: window.innerHeight,
-					ease: 'power2.out'
+					ease: 'power2.out',
+					onComplete: () => {
+						this.inputs.isMoving.value = false
+					}
 				})
 				.to(last$('.content > *'), {
 					y: -50,
@@ -139,6 +145,7 @@ export default class fixedScroll {
 				})
 				.set(nextSection, {
 					display: 'block',
+					// color: 'white'
 				})
 				.from(next$('.content > *'), {
 					y: 50,
