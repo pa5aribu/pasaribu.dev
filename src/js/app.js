@@ -30,6 +30,10 @@ class App {
 			artboard: 'Bhakti',
 			stateMachines: 'controller',
 			canvas: canvases.main,
+			layout: new rive.Layout({
+				fit: rive.Fit.FitHeight,
+				// alignment: rive.Alignment.BottomCenter
+			}),
 			autoplay: true,
 			onLoad: e => { this.playRive() },
 			onStateChange: e => { this.stateRive(e) }

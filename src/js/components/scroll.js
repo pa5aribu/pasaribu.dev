@@ -117,6 +117,8 @@ export default class fixedScroll {
 
 			// this.body.style.background = 'black'
 
+			console.log('look down')
+
 			tl
 				.to([this.mouse.pos, this.mouse.mouse], {
 					onStart: () => {
