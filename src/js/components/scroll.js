@@ -35,6 +35,7 @@ export default class fixedScroll {
 		if(this.currentIndex > 0) {
 			console.log('playing prev section')
 			this.isAnimating = true
+			this.inputs.shirt.value = 2
 
 			const lastSection = this.sections[this.currentIndex]
 			const last$ = gsap.utils.selector(lastSection)
@@ -101,6 +102,8 @@ export default class fixedScroll {
 		if(this.currentIndex + 1 < this.sections.length) {
 			console.log('playing next section')
 			this.isAnimating = true
+
+			this.inputs.shirt.value = 1
 
 			const lastSection = this.sections[this.currentIndex]
 			const last$ = gsap.utils.selector(lastSection)

@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import file from './../img/0.riv'
+import file from './../img/shirt.riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -41,7 +41,7 @@ class App {
 	}
 
 	playRive() {
-		this.rive.resizeDrawingSurfaceToCanvas()
+		// this.rive.resizeDrawingSurfaceToCanvas()
 
 		const inputs = this.rive.stateMachineInputs('controller')
 
@@ -52,6 +52,7 @@ class App {
 			y: inputs.find((i) => i.name === 'translateY'),
 			sectionAbout: inputs.find((i) => i.name === 'sectionAbout'),
 			sectionIntro: inputs.find((i) => i.name === 'sectionIntro'),
+			shirt: inputs.find((i) => i.name === 'shirt'),
 		}
 
 		// console.log(this.riveInputs.isMoving.value = true)
