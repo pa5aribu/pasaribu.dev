@@ -23,14 +23,16 @@
 .header-nav
 	padding 20px
 	li:not(:last-child)
-		margin-bottom 5px
+		a
+			border-bottom 1px solid #ccc
 	a
 		display block
-		background #eee
-		padding 12px 15px
-		border-radius 10px
+		padding 12px 0
 		text-decoration none
 		color black
+		&:hover
+			background black
+			color white
 
 .header-buttons
 	display grid
@@ -46,11 +48,12 @@
 	transition .3s all var(--ease-quart)
 	position relative
 	background white
-	// background rgba(255,255,255,.5)
-	&:hover
-		// background rgba(255,255,255,.75)
+	&:hover:not(:active)
 		translate -3px -3px
 		box-shadow 3px 3px 0 0 black
+	// &:active
+	// 	translate 0 0 !important
+	// 	box-shadow 0px 0px 0 0 black
 
 	svg
 		display block
