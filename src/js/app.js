@@ -85,7 +85,9 @@ class App {
 			// 	fit: rive.Fit.FitHeight
 			// }),
 			autoplay: true,
-			// onLoad: e => { this.playRive() },
+			onLoad: e => {
+				this.rive.resizeDrawingSurfaceToCanvas()
+			},
 			// onStateChange: e => { this.stateRive(e) }
 		})
 
