@@ -11,6 +11,7 @@
     "@parcel/transformer-stylus": "^2.7.0",
     "@rive-app/canvas": "^1.0.71",
     "@rive-app/webgl": "^1.0.89",
+    "circletype": "^2.3.0",
     "components": "^0.1.0",
     "dat.gui": "^0.7.9",
     "gsap": "npm:@gsap/shockingly@^3.11.3",

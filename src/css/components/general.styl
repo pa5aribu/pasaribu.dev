@@ -1,6 +1,6 @@
 body
 	transition .3s background ease
-	background var(--peach)
+	background var(--purple)
 	font-family var(--font-body)
 	font-weight 300
 	position fixed
@@ -27,6 +27,7 @@ main
 		display flex
 
 	#main-canvas
+		pointer-events none
 		height 120%
 		position relative
 		top -20%
@@ -40,19 +41,19 @@ main
 			width 100%
 
 .button
-	// border 2px solid black
+	border 2px solid black
 	transition .3s all var(--ease-quart)
 	position relative
 	display inline-block
-	background rgba(255,255,255,.5)
+	// background rgba(255,255,255,.5)
+	background white
 	border-radius 30px
 	padding 14.5px 30px
 	font-size 18px
-	background orange
 	&:hover
 		// background rgba(255,255,255,.75)
 		translate -3px -3px
-		box-shadow 5px 5px 0 0 black
+		box-shadow 3px 3px 0 0 black
 
 .is-hidden
 	display none

@@ -35,7 +35,7 @@ export default class fixedScroll {
 		if(this.currentIndex > 0) {
 			console.log('playing prev section')
 			this.isAnimating = true
-			this.inputs.shirt.value = 2
+			// this.inputs.shirt.value = 2
 
 			const lastSection = this.sections[this.currentIndex]
 			const last$ = gsap.utils.selector(lastSection)
@@ -67,8 +67,8 @@ export default class fixedScroll {
 				})
 				.to(last$('.content > *'), {
 					y: -50,
-					x: 50,
-					rotation: 5,
+					// x: 50,
+					// rotation: 5,
 					opacity: 0,
 					ease: 'power2.out',
 					stagger: .1
@@ -84,8 +84,8 @@ export default class fixedScroll {
 				})
 				.from(next$('.content > *'), {
 					y: 50,
-					x: -50,
-					rotation: -5,
+					// x: -50,
+					// rotation: -5,
 					opacity: 0,
 					ease: 'power2.out',
 					stagger: .1,
@@ -103,7 +103,7 @@ export default class fixedScroll {
 			console.log('playing next section')
 			this.isAnimating = true
 
-			this.inputs.shirt.value = 1
+			// this.inputs.shirt.value = 1
 
 			const lastSection = this.sections[this.currentIndex]
 			const last$ = gsap.utils.selector(lastSection)
@@ -136,8 +136,8 @@ export default class fixedScroll {
 				})
 				.to(last$('.content > *'), {
 					y: -50,
-					x: 50,
-					rotation: 5,
+					// x: 50,
+					// rotation: 5,
 					opacity: 0,
 					ease: 'power2.out',
 					stagger: .1
@@ -154,8 +154,8 @@ export default class fixedScroll {
 				})
 				.from(next$('.content > *'), {
 					y: 50,
-					x: -50,
-					rotation: -5,
+					// x: -50,
+					// rotation: -5,
 					opacity: 0,
 					ease: 'power2.out',
 					stagger: .1,

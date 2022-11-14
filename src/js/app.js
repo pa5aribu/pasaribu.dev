@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import file from './../img/shirt.riv'
+import file from './../img/1.riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -17,6 +17,8 @@ class App {
 		this.riveInputs = {}
 		this.setRive()
 
+		// interactions.fit()
+		// interactions.curve()
 		interactions.menu()
 	}
 
