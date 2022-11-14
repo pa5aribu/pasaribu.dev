@@ -80,7 +80,7 @@ export default class fixedScroll {
 					clearProps: 'all'
 				})
 				.set(nextSection, {
-					display: 'block',
+					display: 'grid',
 				})
 				.from(next$('.content > *'), {
 					y: 50,
@@ -149,7 +149,7 @@ export default class fixedScroll {
 					clearProps: 'all'
 				})
 				.set(nextSection, {
-					display: 'block',
+					display: 'grid',
 					// color: 'white'
 				})
 				.from(next$('.content > *'), {

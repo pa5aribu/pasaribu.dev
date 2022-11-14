@@ -1,6 +1,6 @@
 body
 	transition .3s background ease
-	background var(--purple)
+	background var(--peach)
 	font-family var(--font-body)
 	font-weight 300
 	position fixed
@@ -12,40 +12,32 @@ body
 	fixVH()
 
 main
-	display flex
-	flex-wrap wrap
+	// display flex
+	// flex-wrap wrap
 	fixVH()
+	display grid
 
 	.sections-wrapper
 		width 100%
-		height 50%
-		padding-top var(--header-height-desktop)
+		// padding-top var(--header-height-desktop)
 
-	.canvas-wrapper
+	.canvas-wrapper-wrapper
+		text-align center
 		width 100%
-		height 50%
-		display flex
+		// display grid
 
-	#main-canvas
-		pointer-events none
-		height 120%
-		position relative
-		top -20%
-		margin auto auto 0
-		max-width 100%
-		display block
+	+above(800px, true)
+		grid-auto-rows 100px auto 50%
 
-	+below(550px, true)
-		#main-canvas
-			height auto
-			width 100%
+	+below(800px, true)
+		.canvas-wrapper-wrapper
+			display grid
 
 .button
 	border 2px solid black
 	transition .3s all var(--ease-quart)
 	position relative
 	display inline-block
-	// background rgba(255,255,255,.5)
 	background white
 	border-radius 30px
 	padding 14.5px 30px

@@ -1,5 +1,8 @@
+import { Howl, Howler } from 'howler'
 import CircleType from 'circletype'
 const fittext = require('./../plugins/fittext')
+
+import popSound from './hover.wav'
 
 export function menu() {
 	const burgerMenuWrapper = document.querySelector('.burger-menu-wrapper');
@@ -28,4 +31,16 @@ export function curve() {
 	curveTitle.radius(introTitle.offsetWidth * 1.2)
 	curveDesc.radius(introDesc.offsetWidth * 1.3)
 	curveDesc2.radius(introDesc2.offsetWidth * 1.8)
+}
+
+export function buttonClicks() {
+	const buttons = [...document.querySelectorAll('.is-pointer')]
+	buttons.forEach(button => {
+		button.addEventListener('click', () => {
+			const sound = new Howl({
+				src: [popSound],
+			})
+			sound.play()
+		})
+	})
 }

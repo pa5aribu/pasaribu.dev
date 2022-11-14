@@ -51,12 +51,16 @@ html(lang="en")
 						.content
 							.section-title who am i?
 							.section-description
-								p I'm a front-end creative developer with extensive motion design skills
-								p My current stack: CSS, JS, GSAP, Three.js, Rive, Figma, Blender
+								p
+									| I'm a senior front-end developer with passion for motion design.<br>
+									| I've worked with a startup, freelance jobs, and an agency.
+								p My current stack: CSS, JS, GSAP, Three.js, Figma and Rive
 							.button-wrapper.is-hidden
 								.button.is-pointer Download Resume
 
-			.canvas-wrapper
-				canvas#main-canvas(width="800" height="600")
+			.canvas-wrapper-wrapper
+				.canvas-wrapper
+					canvas#bhakti(width="800" height="600")
+					canvas#resume(width="400" height="230")
 
 		script(type="module", src="./../js/app.js")

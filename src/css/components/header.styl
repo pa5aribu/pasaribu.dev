@@ -1,5 +1,5 @@
 #header
-	position fixed
+	// position fixed
 	top 0
 	left 0
 	width 100%
@@ -37,8 +37,7 @@
 
 .header-button
 	border-radius 28px
-	width 50px
-	height 50px
+	square(50px)
 	display block
 	box-sizing content-box
 	border 2px solid black
@@ -86,8 +85,7 @@
 	flex-wrap wrap
 	align-items center
 	justify-content center
-	width 50px
-	height 50px
+	square(50px)
 	border-radius 50%
 	padding 14px
 	box-sizing border-box
@@ -101,3 +99,15 @@
 		transition .3s all var(--ease-quart)
 		&:first-child
 			transform-origin top left
+
+// responsive
++below(md)
+	.header-logo
+		font-size 20px
+	.header-buttons
+		grid-gap 8px
+	.header-button, .burger-menu
+		square(40px)
+	.burger-menu
+		padding 10px
+

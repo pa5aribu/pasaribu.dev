@@ -4,6 +4,7 @@ export default class Mouse {
 	constructor(inputs) {
 		this.body = document.body
 		this.customCursor = document.querySelector('.cursor')
+		this.buttons = [...document.querySelectorAll('.is-pointer')]
 
 		this.pos = {
 			x: window.innerWidth/2,
@@ -13,6 +14,7 @@ export default class Mouse {
 			x: window.innerWidth/2,
 			y: window.innerHeight/2
 		}
+
 		this.ease = .25
 		this.posRange = { x: 0, y: 0 }
 		this.inputs = inputs
@@ -73,7 +75,8 @@ export default class Mouse {
 	}
 
 	moveCursor(e) {
-		if(e.target.nodeName == 'A' || e.target.classList.contains('is-pointer')) {
+		const target = e.target
+		if(!target.nodeName == 'A' || target.classList.contains('is-pointer')) {
 			this.customCursor.classList.add('is-pointer')
 		} else {
 			this.customCursor.classList.remove('is-pointer')

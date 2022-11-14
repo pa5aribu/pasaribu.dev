@@ -1,13 +1,14 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import file from './../img/1.riv'
+import file from './../img/6.riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
 
 const canvases = {
-	main: document.getElementById('main-canvas')
+	bhakti: document.getElementById('bhakti'),
+	resume: document.getElementById('resume')
 }
 
 class App {
@@ -17,8 +18,11 @@ class App {
 		this.riveInputs = {}
 		this.setRive()
 
+		this.setRiveResume()
+
 		// interactions.fit()
 		// interactions.curve()
+		interactions.buttonClicks()
 		interactions.menu()
 	}
 
@@ -31,10 +35,9 @@ class App {
 			src: file,
 			artboard: 'Bhakti',
 			stateMachines: 'controller',
-			canvas: canvases.main,
+			canvas: canvases.bhakti,
 			layout: new rive.Layout({
-				fit: rive.Fit.FitHeight,
-				// alignment: rive.Alignment.BottomCenter
+				fit: rive.Fit.FitHeight
 			}),
 			autoplay: true,
 			onLoad: e => { this.playRive() },
@@ -43,7 +46,7 @@ class App {
 	}
 
 	playRive() {
-		// this.rive.resizeDrawingSurfaceToCanvas()
+		this.rive.resizeDrawingSurfaceToCanvas()
 
 		const inputs = this.rive.stateMachineInputs('controller')
 
@@ -71,6 +74,24 @@ class App {
 			this.riveInputs.isBlinking.value = true
 		}
 	}
+
+	setRiveResume() {
+		this.riveResume = new rive.Rive({
+			src: file,
+			artboard: 'Resume',
+			stateMachines: 'controller',
+			canvas: canvases.resume,
+			// layout: new rive.Layout({
+			// 	fit: rive.Fit.FitHeight
+			// }),
+			autoplay: true,
+			// onLoad: e => { this.playRive() },
+			// onStateChange: e => { this.stateRive(e) }
+		})
+
+	}
 }
 
-new App()
+window.onload = () => {
+	new App()
+}

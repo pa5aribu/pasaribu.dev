@@ -1,0 +1,28 @@
+.canvas-wrapper
+	display inline-block
+	position relative
+	height 120%
+	top -20%
+
+	#bhakti
+		aspect-ratio 4/3
+		height 100%
+		pointer-events none
+		display block
+		margin auto
+
+	#resume
+		position absolute
+		top 0
+		right 0
+		width 50%
+		translate 100%
+
+	+below(800px, true)
+		height auto
+		top 0
+		margin-top auto
+
+		#bhakti
+			height auto
+			width 100%
