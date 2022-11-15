@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import file from './../img/12.riv'
+import file from './../img/3.riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -87,7 +87,7 @@ class App {
 		this.riveResume = new rive.Rive({
 			src: file,
 			artboard: 'Resume',
-			stateMachines: 're-controller',
+			stateMachines: 'controller',
 			canvas: canvases.resume,
 			autoplay: true,
 			onLoad: e => {
@@ -101,7 +101,7 @@ class App {
 
 		this.riveWood = new rive.Rive({
 			src: file,
-			artboard: 'Books',
+			artboard: 'Mount',
 			stateMachines: 'controller',
 			canvas: canvases.books,
 			autoplay: true,
