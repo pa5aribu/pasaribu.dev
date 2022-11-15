@@ -17,6 +17,7 @@ export default class fixedScroll {
 
 		this.canvas = document.getElementById('main-canvas')
 		this.sections = [...document.querySelectorAll('section')]
+		this.indicators = [...document.querySelectorAll('.section-indicator')]
 
 		this.currentIndex = 0
 		this.wrap = gsap.utils.wrap(0, this.sections.length - 1)
@@ -43,8 +44,8 @@ export default class fixedScroll {
 			const nextSection = lastSection.previousElementSibling
 			const next$ = gsap.utils.selector(nextSection)
 
-			console.log(lastSection)
-			console.log(nextSection)
+			this.indicators[this.currentIndex].classList.remove('is-active')
+			this.indicators[this.currentIndex-1].classList.add('is-active')
 
 			const tl = gsap.timeline({
 				onComplete: () => {
@@ -110,6 +111,9 @@ export default class fixedScroll {
 
 			const nextSection = lastSection.nextElementSibling
 			const next$ = gsap.utils.selector(nextSection)
+
+			this.indicators[this.currentIndex].classList.remove('is-active')
+			this.indicators[this.currentIndex+1].classList.add('is-active')
 
 			const tl = gsap.timeline({
 				onComplete: () => {

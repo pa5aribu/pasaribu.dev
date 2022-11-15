@@ -7,7 +7,7 @@ html(lang="en")
 		link(rel="stylesheet" href="./../css/styles.styl")
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital@0;1&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
 	body.no-cursor
 
@@ -17,10 +17,17 @@ html(lang="en")
 			include components/cursor
 
 		main#app
+
+			.sections-indicator
+				.section-indicator.is-pointer.is-active intro
+				.section-indicator.is-pointer about
+				.section-indicator.is-pointer work
+				.section-indicator.is-pointer contact
+
 			header#header
 				.container-fluid
 					.header-inner
-						a.header-logo(href="#") Pasaribu.dev
+						a.header-logo(href="#") Pasaribu.xyz
 						.header-buttons
 							.customize-button.header-button.is-pointer
 								svg(viewBox="0 0 50 50")
@@ -62,6 +69,6 @@ html(lang="en")
 				.canvas-wrapper
 					canvas#bhakti(width="800" height="600")
 					a.resume-wrapper(href="#resume")
-						canvas#resume(width="280" height="220")
+						canvas#resume.is-pointer(width="280" height="220")
 
 		script(type="module", src="./../js/app.js")

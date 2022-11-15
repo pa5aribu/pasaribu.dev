@@ -1,6 +1,6 @@
 body
 	transition .3s background ease
-	background var(--peach)
+	background linear-gradient(to top, var(--peach), var(--peach-light))
 	font-family var(--font-body)
 	font-weight 300
 	position fixed
@@ -12,21 +12,17 @@ body
 	fixVH()
 
 main
-	// display flex
-	// flex-wrap wrap
 	fixVH()
+	position relative
 	display grid
 	grid-auto-rows 100px auto 50%
 
 	.sections-wrapper
 		width 100%
-		// padding-top var(--header-height-desktop)
 
 	.canvas-wrapper-wrapper
 		text-align center
 		width 100%
-		// display grid
-
 
 	+below(800px, true)
 		grid-auto-rows 100px auto auto
@@ -43,7 +39,6 @@ main
 	padding 14.5px 30px
 	font-size 18px
 	&:hover
-		// background rgba(255,255,255,.75)
 		translate -3px -3px
 		box-shadow 3px 3px 0 0 black
 

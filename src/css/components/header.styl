@@ -10,7 +10,7 @@
 	font-size 22px
 	color black
 	text-decoration none
-	font-weight 400
+	font-weight 700
 
 .header-inner
 	display flex
@@ -21,18 +21,41 @@
 	position relative
 
 .header-nav
-	padding 20px
+	padding 20px 10px
 	li:not(:last-child)
-		a
-			border-bottom 1px solid #ccc
+		a:before
+			content ''
+			position absolute
+			bottom 0
+			left 10px
+			right 10px
+			height 1px
+			background #ccc
+			z-index -2
 	a
 		display block
-		padding 12px 0
+		padding 12px 10px
 		text-decoration none
 		color black
-		&:hover
+		position relative
+		transition .3s all ease
+		border-radius 10px
+		&:after
+			content ''
+			position absolute
+			top 0
+			bottom 0
+			left 0
+			right 0
 			background black
+			border-radius 10px
+			transition .3s all ease
+			opacity 0
+			z-index -1
+		&:hover
 			color white
+			&:after
+				opacity 1
 
 .header-buttons
 	display grid
@@ -48,22 +71,12 @@
 	transition .3s all var(--ease-quart)
 	position relative
 	background white
-	&:hover:not(:active)
-		translate -3px -3px
-		box-shadow 3px 3px 0 0 black
-	// &:active
-	// 	translate 0 0 !important
-	// 	box-shadow 0px 0px 0 0 black
 
 	svg
 		display block
 
 .burger-menu-wrapper
-	// position relative
 	position absolute
-	// top 50%
-	// margin-top -25px
-	// background white
 	transition .3s all var(--ease-quart)
 	right 0
 	overflow hidden
@@ -115,4 +128,11 @@
 		square(40px)
 	.burger-menu
 		padding 10px
+	.header-inner
+		height var(--header-height-mobile)
 
++above(md)
+	.header-button
+		&:hover:not(:active)
+			translate -3px -3px
+			box-shadow 3px 3px 0 0 black
