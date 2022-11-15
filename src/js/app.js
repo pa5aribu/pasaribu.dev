@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import file from './../img/8.riv'
+import file from './../img/9.riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -66,7 +66,7 @@ class App {
 		}
 
 		// console.log(this.riveInputs.isMoving.value = true)
-		this.riveInputs.clothes.value = 2
+		this.riveInputs.clothes.value = 1
 
 		this.mouse = new mouse(this.riveInputs)
 		this.scroll = new fixedScroll(this.riveInputs, this.mouse)
