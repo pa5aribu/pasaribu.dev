@@ -1,14 +1,15 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import file from './../img/9.riv'
+import file from './../img/11.riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
 
 const canvases = {
 	bhakti: document.getElementById('bhakti'),
-	resume: document.getElementById('resume')
+	resume: document.getElementById('resume'),
+	books: document.getElementById('books')
 }
 
 class App {
@@ -82,6 +83,7 @@ class App {
 	}
 
 	setRiveResume() {
+
 		this.riveResume = new rive.Rive({
 			src: file,
 			artboard: 'Resume',
@@ -89,7 +91,23 @@ class App {
 			canvas: canvases.resume,
 			autoplay: true,
 			onLoad: e => {
+				this.riveResume.resizeDrawingSurfaceToCanvas()
 				console.log('load resume')
+			},
+			onStateChange: e => {
+				console.log(e.data)
+			}
+		})
+
+		this.riveWood = new rive.Rive({
+			src: file,
+			artboard: 'Books',
+			stateMachines: 'controller',
+			canvas: canvases.books,
+			autoplay: true,
+			onLoad: e => {
+				this.riveWood.resizeDrawingSurfaceToCanvas()
+				console.log('load books')
 			},
 			onStateChange: e => {
 				console.log(e.data)
