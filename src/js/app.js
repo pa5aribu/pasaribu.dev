@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import file from './../img/3.riv'
+import riveFile from './../img/5.riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -12,51 +12,81 @@ const canvases = {
 	books: document.getElementById('books')
 }
 
-class App {
+let artboardsLoaded = 0
+
+class Resume {
 	constructor() {
+		this.rive = new rive.Rive({
+			src: riveFile,
+			artboard: 'Resume',
+			stateMachines: 'controller',
+			canvas: canvases.resume,
+			onLoad: e => {
+				checkAllLoaded()
+			},
+			onStateChange: e => {
+				stateChange('resume', e.data)
+			}
+		})
+	}
+}
+
+class MountBooks {
+	constructor() {
+		this.rive = new rive.Rive({
+			src: riveFile,
+			artboard: 'Mount Books',
+			stateMachines: 'controller',
+			canvas: canvases.books,
+			onLoad: e => {
+				checkAllLoaded()
+			},
+			onStateChange: e => {
+				stateChange('books', e.data)
+			}
+		})
+	}
+}
+
+class Bhakti {
+	constructor() {
+		this.rive = new rive.Rive({
+			src: riveFile,
+			artboard: 'Bhakti',
+			stateMachines: 'controller',
+			canvas: canvases.bhakti,
+			onLoad: e => {
+				checkAllLoaded()
+			},
+			onStateChange: e => {
+				stateChange('bhakti', e.data)
+			}
+		})
+	}
+}
+
+class App {
+	constructor(rives) {
 		this.body = document.body
-		this.rive
-		this.riveInputs = {}
-		this.setRive()
-		this.setRiveResume()
+		this.rives = rives
 
-
-		// interactions.fit()
-		// interactions.curve()
 		interactions.buttonClicks()
 		interactions.menu()
 	}
 
-	setGUI() {
-		const settings = {}
+	play() {
+		this.rives.bhakti.play()
+		this.rives.resume.play()
+		this.rives.mountBooks.play()
+
+		this.rives.bhakti.resizeDrawingSurfaceToCanvas()
+		this.rives.resume.resizeDrawingSurfaceToCanvas()
+		this.rives.mountBooks.resizeDrawingSurfaceToCanvas()
 	}
 
-	setRive() {
-		this.rive = new rive.Rive({
-			src: file,
-			artboard: 'Bhakti',
-			stateMachines: 'controller',
-			canvas: canvases.bhakti,
-			layout: new rive.Layout({
-				fit: rive.Fit.FitHeight
-			}),
-			autoplay: true,
-			onLoad: e => {
-				this.playRive()
-				// setTimeout(() => {
-				// 	this.riveResume.play()
-				// }, 300)
-			},
-			onStateChange: e => { this.stateRive(e) }
-		})
-	}
-
-	playRive() {
-		this.rive.resizeDrawingSurfaceToCanvas()
-
-		const inputs = this.rive.stateMachineInputs('controller')
-
-		this.riveInputs = {
+	playBhakti() {
+		const inputs = this.rives.bhakti.stateMachineInputs('controller')
+		this.rives.bhakti.inputs = {
 			isMoving: inputs.find((i) => i.name === 'isMoving'),
 			isBlinking: inputs.find((i) => i.name === 'isBlinking'),
 			x: inputs.find((i) => i.name === 'translateX'),
@@ -65,58 +95,48 @@ class App {
 			sectionIntro: inputs.find((i) => i.name === 'sectionIntro'),
 			clothes: inputs.find((i) => i.name === 'clothes'),
 		}
-
-		// console.log(this.riveInputs.isMoving.value = true)
-		this.riveInputs.clothes.value = 1
-
-		this.mouse = new mouse(this.riveInputs)
-		this.scroll = new fixedScroll(this.riveInputs, this.mouse)
+		this.mouse = new mouse(this.rives.bhakti.inputs)
+		this.scroll = new fixedScroll(this.rives.bhakti.inputs, this.mouse)
 	}
 
-	stateRive(e) {
-		const data = e.data
-		console.log(data[0])
+	changeBhakti(data) {
 		if(data[0] == 'is-breathing') {
-			this.riveInputs.isMoving.value = true
-			this.riveInputs.isBlinking.value = true
+			this.rives.bhakti.inputs.isMoving.value = true
+			this.rives.bhakti.inputs.isBlinking.value = true
 		}
 	}
 
-	setRiveResume() {
+	changeResume(data) {
+		console.log('resume')
+	}
 
-		this.riveResume = new rive.Rive({
-			src: file,
-			artboard: 'Resume',
-			stateMachines: 'controller',
-			canvas: canvases.resume,
-			autoplay: true,
-			onLoad: e => {
-				this.riveResume.resizeDrawingSurfaceToCanvas()
-				console.log('load resume')
-			},
-			onStateChange: e => {
-				console.log(e.data)
-			}
-		})
+	changeMountBooks(data) {
+		console.log(data)
+	}
 
-		this.riveWood = new rive.Rive({
-			src: file,
-			artboard: 'Mount',
-			stateMachines: 'controller',
-			canvas: canvases.books,
-			autoplay: true,
-			onLoad: e => {
-				this.riveWood.resizeDrawingSurfaceToCanvas()
-				console.log('load books')
-			},
-			onStateChange: e => {
-				console.log(e.data)
-			}
-		})
+}
 
+
+const riveBhakti = new Bhakti()
+const riveResume = new Resume()
+const riveMountBooks = new MountBooks()
+const app = new App({
+	bhakti: riveBhakti.rive,
+	resume: riveResume.rive,
+	mountBooks: riveMountBooks.rive
+})
+
+function checkAllLoaded() {
+	artboardsLoaded += 1
+
+	if(artboardsLoaded == 3) {
+		app.play()
+		app.playBhakti()
 	}
 }
 
-window.onload = () => {
-	new App()
+function stateChange(from, data) {
+	if(from == 'bhakti') app.changeBhakti(data)
+	if(from == 'resume') app.changeResume(data)
+	if(from == 'books') app.changeMountBooks(data)
 }
