@@ -1,9 +1,22 @@
+.overlay
+	position fixed
+	top 0
+	left 0
+	right 0
+	bottom 0
+	background #bb7a6e
+	z-index	60
+	display grid
+	text-align center	
+	align-items center
+	color white
+	font-size 40px
+
 body
 	color black
 	transition .3s background ease
 	// background linear-gradient(to top, var(--peach), var(--peach-light))
-	background var(--peach)
-
+	background #bb7a6e
 	font-family var(--font-body)
 	font-weight 300
 	position fixed
@@ -16,6 +29,7 @@ body
 
 main
 	fixVH()
+	background var(--peach)
 	position relative
 	display grid
 	grid-auto-rows 100px auto 50%
@@ -47,3 +61,8 @@ main
 
 .is-hidden
 	display none
+
+// responsive
++below(md)
+	.overlay
+		font-size 30px

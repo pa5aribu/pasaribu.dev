@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import riveFile from './../img/5.riv'
+import riveFile from './../img/6.riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -75,13 +75,32 @@ class App {
 	}
 
 	play() {
+		this.rives.bhakti.resizeDrawingSurfaceToCanvas()
+		this.rives.resume.resizeDrawingSurfaceToCanvas()
+		this.rives.mountBooks.resizeDrawingSurfaceToCanvas()
+
 		this.rives.bhakti.play()
 		this.rives.resume.play()
 		this.rives.mountBooks.play()
 
-		this.rives.bhakti.resizeDrawingSurfaceToCanvas()
-		this.rives.resume.resizeDrawingSurfaceToCanvas()
-		this.rives.mountBooks.resizeDrawingSurfaceToCanvas()
+		const overlay = document.querySelector('.overlay')
+		const tl = gsap.timeline()
+
+		tl
+			.set('.overlay', {
+				opacity: 0
+			})
+			.set('body', {
+				clipPath: 'circle(0% at 50% 100%)'
+			})
+			.to('body', {
+				clipPath: 'circle(150% at 50% 100%)',
+				duration: 2,
+				ease: 'power4.out'
+			})
+			.set('.overlay', {
+				display: 'none'
+			})
 	}
 
 	playBhakti() {
@@ -107,7 +126,6 @@ class App {
 	}
 
 	changeResume(data) {
-		console.log('resume')
 	}
 
 	changeMountBooks(data) {
@@ -130,6 +148,7 @@ function checkAllLoaded() {
 	artboardsLoaded += 1
 
 	if(artboardsLoaded == 3) {
+		console.log('all loaded')
 		app.play()
 		app.playBhakti()
 	}
