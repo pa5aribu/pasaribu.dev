@@ -36,13 +36,17 @@ main
 
 	.sections-wrapper
 		width 100%
+		margin auto
 
 	.canvas-wrapper-wrapper
 		text-align center
 		width 100%
 
 	+below(800px, true)
-		grid-auto-rows 100px auto auto
+		display flex
+		flex-wrap wrap
+		flex-direction column
+
 		.canvas-wrapper-wrapper
 			display grid
 
