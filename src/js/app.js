@@ -21,6 +21,7 @@ class Resume {
 			artboard: 'Resume',
 			stateMachines: 'controller',
 			canvas: canvases.resume,
+			autoplay: true,
 			onLoad: e => {
 				checkAllLoaded()
 			},
@@ -38,6 +39,7 @@ class MountBooks {
 			artboard: 'Mount Books',
 			stateMachines: 'controller',
 			canvas: canvases.books,
+			autoplay: true,
 			onLoad: e => {
 				checkAllLoaded()
 			},
@@ -80,8 +82,8 @@ class App {
 		this.rives.mountBooks.resizeDrawingSurfaceToCanvas()
 
 		this.rives.bhakti.play()
-		this.rives.resume.play()
-		this.rives.mountBooks.play()
+		// this.rives.resume.play()
+		// this.rives.mountBooks.play()
 
 		const overlay = document.querySelector('.overlay')
 		const tl = gsap.timeline()
@@ -101,6 +103,15 @@ class App {
 			.set('.overlay', {
 				display: 'none'
 			})
+	}
+
+	playResume() {
+		const inputs = this.rives.resume.stateMachineInputs('controller')
+		this.rives.resume.inputs = {
+			isLoaded: inputs.find((i) => i.name === 'isLoaded')
+		}
+
+		this.rives.resume.inputs.isLoaded.value = true
 	}
 
 	playBhakti() {
@@ -150,6 +161,7 @@ function checkAllLoaded() {
 	if(artboardsLoaded == 3) {
 		console.log('all loaded')
 		app.play()
+		app.playResume()
 		app.playBhakti()
 	}
 }
