@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import riveFile from './../img/6.riv'
+import riveFile from './../img/4.riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -9,10 +9,29 @@ import * as interactions from './components/interactions'
 const canvases = {
 	bhakti: document.getElementById('bhakti'),
 	resume: document.getElementById('resume'),
-	books: document.getElementById('books')
+	books: document.getElementById('books'),
+	plants: document.getElementById('plants')
 }
 
 let artboardsLoaded = 0
+
+class Plants {
+	constructor() {
+		this.rive = new rive.Rive({
+			src: riveFile,
+			artboard: 'Plants',
+			stateMachines: 'controller',
+			canvas: canvases.plants,
+			autoplay: true,
+			onLoad: e => {
+				checkAllLoaded()
+			},
+			onStateChange: e => {
+				stateChange('plants', e.data)
+			}
+		})
+	}
+}
 
 class Resume {
 	constructor() {
@@ -80,6 +99,7 @@ class App {
 		this.rives.bhakti.resizeDrawingSurfaceToCanvas()
 		this.rives.resume.resizeDrawingSurfaceToCanvas()
 		this.rives.mountBooks.resizeDrawingSurfaceToCanvas()
+		this.rives.plants.resizeDrawingSurfaceToCanvas()
 
 		this.rives.bhakti.play()
 		// this.rives.resume.play()
@@ -125,6 +145,7 @@ class App {
 			sectionIntro: inputs.find((i) => i.name === 'sectionIntro'),
 			clothes: inputs.find((i) => i.name === 'clothes'),
 		}
+		this.rives.bhakti.inputs.clothes.value = 1
 		this.mouse = new mouse(this.rives.bhakti.inputs)
 		this.scroll = new fixedScroll(this.rives.bhakti.inputs, this.mouse)
 	}
@@ -149,16 +170,19 @@ class App {
 const riveBhakti = new Bhakti()
 const riveResume = new Resume()
 const riveMountBooks = new MountBooks()
+const rivePlants = new Plants()
+
 const app = new App({
 	bhakti: riveBhakti.rive,
 	resume: riveResume.rive,
-	mountBooks: riveMountBooks.rive
+	mountBooks: riveMountBooks.rive,
+	plants: rivePlants.rive
 })
 
 function checkAllLoaded() {
 	artboardsLoaded += 1
 
-	if(artboardsLoaded == 3) {
+	if(artboardsLoaded == 4) {
 		console.log('all loaded')
 		app.play()
 		app.playResume()
