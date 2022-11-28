@@ -29,15 +29,25 @@ body
 
 main
 	fixVH()
-	background var(--peach)
 	// background #ddd
 	position relative
 	display grid
 	grid-auto-rows 100px auto 50%
+	background white
+	border 15px solid white
+
+	&:before
+		content ''
+		position absolute
+		absolute(0px)
+		border-radius 15px
+		background var(--peach)
+		// animation squiggly-anim 0.34s ease infinite
 
 	.sections-wrapper
 		width 100%
 		margin auto
+		position relative
 
 	.canvas-wrapper-wrapper
 		text-align center
