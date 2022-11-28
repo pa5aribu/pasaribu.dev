@@ -1,8 +1,44 @@
+@keyframes squiggly-anim
+  0%
+    filter url('#squiggly-0')
+  
+  25%
+    filter url('#squiggly-1')
+  
+  50%
+    filter url('#squiggly-2')
+  
+  75%
+    filter url('#squiggly-3')
+  
+  100%
+    filter url('#squiggly-4')
+
+@keyframes squiggly-new
+  0%
+    filter url('#squiggly-0')
+  50%
+    filter url('#squiggly-2')
+  100%
+    filter url('#squiggly-4')
+
+.svg-filter
+	position fixed
+	top 0
+	left 0
+
 .canvas-wrapper
 	display inline-block
 	position relative
-	// height 110%
-	// top -10%
+	// filter url('#squiggly-0')
+	// -webkit-filter url('#squiggly-0')
+	// -moz-filter url('#squiggly-0')
+	animation squiggly-anim 0.34s ease infinite
+	// transform: translate3d(0, 0, 0);
+
+	// canvas
+	// 	transform: translate3d(0, 0, 0);
+	// 	shape-rendering: optimizeSpeed;
 
 	#bhakti
 		aspect-ratio 4/3
@@ -18,7 +54,18 @@
 		width 50%
 		transform translate(-150%,-100%)
 		display block
-		// border 1px solid red
+
+	.resume-link
+		position absolute
+		top 32%
+		bottom 27%
+		left 19%
+		right 19%
+		border 1px solid red
+		pointer-events none
+		transition .3s all ease
+		&:hover
+			transform translateY(-8%)
 
 	#resume
 		width 100%

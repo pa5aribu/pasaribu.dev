@@ -11,6 +11,9 @@ html(lang="en")
 
 	body.no-cursor
 
+		.svg-filter
+			include native/squiggly
+
 		include components/icons
 
 		.overlay
@@ -69,7 +72,8 @@ html(lang="en")
 			.canvas-wrapper-wrapper
 				.canvas-wrapper
 					canvas#bhakti(width="800" height="600")
-					a.resume-wrapper(href="#resume")
+					.resume-wrapper(href="#resume")
+						.resume-link
 						canvas#resume(width="400" height="400")
 					canvas#books(width="420" height="300")
 					canvas#plants(width="300" height="500")

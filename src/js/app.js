@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import riveFile from './../img/pasaribu.dev (9).riv'
+import riveFile from './../img/pasaribu.dev (12).riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -194,4 +194,5 @@ function stateChange(from, data) {
 	if(from == 'bhakti') app.changeBhakti(data)
 	if(from == 'resume') app.changeResume(data)
 	if(from == 'books') app.changeMountBooks(data)
+	// if(from == 'plants') app.changeMountBooks(data)
 }
