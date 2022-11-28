@@ -10,6 +10,7 @@
     "@parcel/transformer-pug": "^2.7.0",
     "@parcel/transformer-stylus": "^2.7.0",
     "@rive-app/canvas": "^1.0.71",
+    "@rive-app/canvas-advanced": "^1.0.91",
     "@rive-app/webgl": "^1.0.89",
     "circletype": "^2.3.0",
     "components": "^0.1.0",

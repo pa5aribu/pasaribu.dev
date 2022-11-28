@@ -148,7 +148,7 @@ class App {
 			sectionIntro: inputs.find((i) => i.name === 'sectionIntro'),
 			clothes: inputs.find((i) => i.name === 'clothes'),
 		}
-		this.rives.bhakti.inputs.clothes.value = 1
+		this.rives.bhakti.inputs.clothes.value = 2
 		this.mouse = new mouse(this.rives.bhakti.inputs)
 		this.scroll = new fixedScroll(this.rives.bhakti.inputs, this.mouse)
 	}

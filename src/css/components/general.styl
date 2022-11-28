@@ -33,15 +33,18 @@ main
 	position relative
 	display grid
 	grid-auto-rows 100px auto 50%
-	background white
 	border 15px solid white
 
 	&:before
 		content ''
 		position absolute
 		absolute(0px)
-		border-radius 15px
-		background var(--peach)
+		// border-radius 15px
+		background url('./../img/paper.jpg') no-repeat center center / cover
+		background-color #d09387
+		overflow hidden
+		background-blend-mode soft-light
+		// background var(--peach)
 		// animation squiggly-anim 0.34s ease infinite
 
 	.sections-wrapper
