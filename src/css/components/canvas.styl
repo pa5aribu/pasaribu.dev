@@ -30,6 +30,7 @@
 .canvas-wrapper
 	display inline-block
 	position relative
+	top 1px
 	// filter url('#squiggly-0')
 	// -webkit-filter url('#squiggly-0')
 	// -moz-filter url('#squiggly-0')
@@ -57,18 +58,18 @@
 
 	.resume-link
 		position absolute
-		top 32%
+		top 31%
 		bottom 27%
 		left 19%
 		right 19%
-		border 1px solid red
-		pointer-events none
-		transition .3s all ease
+		transition .3s transform cubic-bezier(.34, 2.14, .64, 1)
 		&:hover
-			transform translateY(-8%)
+			transition .3s transform ease
+			transform translateY(-6%)
 
 	#resume
 		width 100%
+		pointer-events none
 
 	#books
 		position absolute

@@ -128,10 +128,13 @@ class App {
 	playResume() {
 		const inputs = this.rives.resume.stateMachineInputs('controller')
 		this.rives.resume.inputs = {
-			isLoaded: inputs.find((i) => i.name === 'isLoaded')
+			isLoaded: inputs.find((i) => i.name === 'isLoaded'),
+			isHover: inputs.find((i) => i.name === 'isHover')
 		}
 
 		this.rives.resume.inputs.isLoaded.value = true
+
+		interactions.resume(this.rives.resume.inputs.isHover)
 	}
 
 	playBhakti() {
