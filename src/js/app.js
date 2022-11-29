@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import riveFile from './../img/pasaribu.dev (13).riv'
+import riveFile from './../img/pasaribu.dev (15).riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -102,8 +102,10 @@ class App {
 		this.rives.plants.resizeDrawingSurfaceToCanvas()
 
 		this.rives.bhakti.play()
-		// this.rives.resume.play()
-		// this.rives.mountBooks.play()
+
+		this.playBhakti()
+		this.playResume()
+		this.playPlants()
 
 		const overlay = document.querySelector('.overlay')
 		const tl = gsap.timeline()
@@ -137,6 +139,15 @@ class App {
 		interactions.resume(this.rives.resume.inputs.isHover)
 	}
 
+	playPlants() {
+		const inputs = this.rives.plants.stateMachineInputs('controller')
+		this.rives.plants.inputs = {
+			isLoaded: inputs.find((i) => i.name === 'isLoaded'),
+		}
+
+		this.rives.plants.inputs.isLoaded.value = true
+	}
+
 	playBhakti() {
 		const inputs = this.rives.bhakti.stateMachineInputs('controller')
 		this.rives.bhakti.inputs = {
@@ -148,7 +159,7 @@ class App {
 			sectionIntro: inputs.find((i) => i.name === 'sectionIntro'),
 			clothes: inputs.find((i) => i.name === 'clothes'),
 		}
-		this.rives.bhakti.inputs.clothes.value = 2
+		this.rives.bhakti.inputs.clothes.value = 1
 		this.mouse = new mouse(this.rives.bhakti.inputs)
 		this.scroll = new fixedScroll(this.rives.bhakti.inputs, this.mouse)
 	}
@@ -188,8 +199,8 @@ function checkAllLoaded() {
 	if(artboardsLoaded == 4) {
 		console.log('all loaded')
 		app.play()
-		app.playResume()
-		app.playBhakti()
+		// app.playResume()
+		// app.playBhakti()
 	}
 }
 

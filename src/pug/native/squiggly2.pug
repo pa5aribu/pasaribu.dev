@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
+	<defs>
+		<filter filterRes="1" color-interpolation-filters="sRGB" id="squiggly">
+			<feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="5" result="noise" seed="0"/>
+			<feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="2" />
+			<animate attributeName="seed" from="0" to="4" dur=".4s" repeatCount="indefinite"/>
+		</filter>
+	</defs> 
+</svg>
+
