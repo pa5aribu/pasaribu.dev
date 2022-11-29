@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import riveFile from './../img/pasaribu.dev (15).riv'
+import riveFile from './../img/pasaribu.dev (0).riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -159,7 +159,7 @@ class App {
 			sectionIntro: inputs.find((i) => i.name === 'sectionIntro'),
 			clothes: inputs.find((i) => i.name === 'clothes'),
 		}
-		this.rives.bhakti.inputs.clothes.value = 1
+		// this.rives.bhakti.inputs.clothes.value = 1
 		this.mouse = new mouse(this.rives.bhakti.inputs)
 		this.scroll = new fixedScroll(this.rives.bhakti.inputs, this.mouse)
 	}
