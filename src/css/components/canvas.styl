@@ -21,7 +21,12 @@
 
 .canvas-wrapper
 	display inline-block
-	position relative
+	position fixed
+	bottom -1px
+	left 50%
+	z-index 50
+	height 45%
+	transform translateX(-50%)
 	animation squiggly-anim 0.34s ease infinite
 
 	#bhakti
@@ -88,5 +93,5 @@
 			height auto
 			width 100%
 
-		.resume-wrapper, #books, #plants
+		.resume-wrapper, canvas:not(#bhakti)
 			display none

@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import riveFile from './../img/pasaribu.dev (4).riv'
+import riveFile from './../img/pasaribu.dev (5).riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -128,24 +128,25 @@ class App {
 		this.playPlants()
 		this.playMountBooks()
 
-		const overlay = document.querySelector('.overlay')
-		const tl = gsap.timeline()
+		// const overlay = document.querySelector('.overlay')
+		// const tl = gsap.timeline()
 
-		tl
-			.set('.overlay', {
-				opacity: 0
-			})
-			.set('body', {
-				clipPath: 'circle(0% at 50% 100%)'
-			})
-			.to('body', {
-				clipPath: 'circle(150% at 50% 100%)',
-				duration: 2,
-				ease: 'power4.out'
-			})
-			.set('.overlay', {
-				display: 'none'
-			})
+		// tl
+		// 	.set('.overlay', {
+		// 		opacity: 0
+		// 	})
+		// 	.set('body', {
+		// 		clipPath: 'circle(0% at 50% 100%)'
+		// 	})
+		// 	.to('body', {
+		// 		clipPath: 'circle(150% at 50% 100%)',
+		// 		duration: 2,
+		// 		ease: 'power4.out'
+		// 	})
+		// 	.set('.overlay', {
+		// 		display: 'none'
+		// 	})
+
 	}
 
 	playResume() {
