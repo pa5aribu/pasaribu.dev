@@ -14,14 +14,6 @@
   100%
     filter url('#squiggly-4')
 
-@keyframes squiggly-new
-  0%
-    filter url('#squiggly-0')
-  50%
-    filter url('#squiggly-2')
-  100%
-    filter url('#squiggly-4')
-
 .svg-filter
 	position fixed
 	top 0
@@ -30,16 +22,7 @@
 .canvas-wrapper
 	display inline-block
 	position relative
-	top 1px
-	// filter url('#squiggly-0')
 	animation squiggly-anim 0.34s ease infinite
-	// -webkit-filter url('#squiggly-0')
-	// -moz-filter url('#squiggly-0')
-	// transform: translate3d(0, 0, 0);
-
-	// canvas
-	// 	transform: translate3d(0, 0, 0);
-	// 	shape-rendering: optimizeSpeed;
 
 	#bhakti
 		aspect-ratio 4/3
@@ -53,7 +36,7 @@
 		top 0
 		left 0
 		width 50%
-		transform translate(-150%,-100%)
+		transform translate(-180%, -110%)
 		display block
 
 	.resume-link
@@ -67,6 +50,13 @@
 			transition .3s transform ease
 			transform translateY(-6%)
 
+	#light
+		position absolute
+		top 0
+		right 0
+		width 50%
+		transform translate(165%, -150%)
+
 	#resume
 		width 100%
 		pointer-events none
@@ -75,15 +65,17 @@
 		position absolute
 		bottom 0
 		right 0
-		transform translate(130%,-70%)
+		// transform translate(120%,-50%)
+		transform translate(140%, -25%)
 		display block
-		width 50%
+		width 62.5%
 
 	#plants
 		position absolute
 		bottom 0
 		left 0
-		transform translate(-150%,0)
+		// transform translate(-150%,0)
+		transform translate(-175%, 0)
 		display block
 		width 37.5%
 

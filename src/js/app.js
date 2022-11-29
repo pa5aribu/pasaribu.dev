@@ -1,7 +1,7 @@
 const rive = require('@rive-app/canvas');
 import gsap from 'gsap'
 import { GUI } from 'dat.gui';
-import riveFile from './../img/pasaribu.dev (0).riv'
+import riveFile from './../img/pasaribu.dev (3).riv'
 import mouse from './components/mouse'
 import fixedScroll from './components/scroll'
 import * as interactions from './components/interactions'
@@ -10,10 +10,29 @@ const canvases = {
 	bhakti: document.getElementById('bhakti'),
 	resume: document.getElementById('resume'),
 	books: document.getElementById('books'),
-	plants: document.getElementById('plants')
+	plants: document.getElementById('plants'),
+	light: document.getElementById('light')
 }
 
 let artboardsLoaded = 0
+
+class Light {
+	constructor() {
+		this.rive = new rive.Rive({
+			src: riveFile,
+			artboard: 'Light',
+			stateMachines: 'controller',
+			canvas: canvases.light,
+			autoplay: true,
+			onLoad: e => {
+				checkAllLoaded()
+			},
+			onStateChange: e => {
+				stateChange('light', e.data)
+			}
+		})
+	}
+}
 
 class Plants {
 	constructor() {
@@ -55,7 +74,7 @@ class MountBooks {
 	constructor() {
 		this.rive = new rive.Rive({
 			src: riveFile,
-			artboard: 'Mount Books',
+			artboard: 'Mount',
 			stateMachines: 'controller',
 			canvas: canvases.books,
 			autoplay: true,
@@ -100,12 +119,14 @@ class App {
 		this.rives.resume.resizeDrawingSurfaceToCanvas()
 		this.rives.mountBooks.resizeDrawingSurfaceToCanvas()
 		this.rives.plants.resizeDrawingSurfaceToCanvas()
+		this.rives.light.resizeDrawingSurfaceToCanvas()
 
 		this.rives.bhakti.play()
 
 		this.playBhakti()
 		this.playResume()
 		this.playPlants()
+		this.playMountBooks()
 
 		const overlay = document.querySelector('.overlay')
 		const tl = gsap.timeline()
@@ -148,6 +169,15 @@ class App {
 		this.rives.plants.inputs.isLoaded.value = true
 	}
 
+	playMountBooks() {
+		const inputs = this.rives.mountBooks.stateMachineInputs('controller')
+		this.rives.mountBooks.inputs = {
+			isLoaded: inputs.find((i) => i.name === 'isLoaded'),
+		}
+
+		this.rives.mountBooks.inputs.isLoaded.value = true
+	}
+
 	playBhakti() {
 		const inputs = this.rives.bhakti.stateMachineInputs('controller')
 		this.rives.bhakti.inputs = {
@@ -185,22 +215,22 @@ const riveBhakti = new Bhakti()
 const riveResume = new Resume()
 const riveMountBooks = new MountBooks()
 const rivePlants = new Plants()
+const riveLight = new Light()
 
 const app = new App({
 	bhakti: riveBhakti.rive,
 	resume: riveResume.rive,
 	mountBooks: riveMountBooks.rive,
-	plants: rivePlants.rive
+	plants: rivePlants.rive,
+	light: riveLight.rive
 })
 
 function checkAllLoaded() {
 	artboardsLoaded += 1
 
-	if(artboardsLoaded == 4) {
+	if(artboardsLoaded == 5) {
 		console.log('all loaded')
 		app.play()
-		// app.playResume()
-		// app.playBhakti()
 	}
 }
 
@@ -208,5 +238,4 @@ function stateChange(from, data) {
 	if(from == 'bhakti') app.changeBhakti(data)
 	if(from == 'resume') app.changeResume(data)
 	if(from == 'books') app.changeMountBooks(data)
-	// if(from == 'plants') app.changeMountBooks(data)
 }

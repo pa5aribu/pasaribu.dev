@@ -14,9 +14,8 @@
 
 body
 	color black
-	transition .3s background ease
-	// background linear-gradient(to top, var(--peach), var(--peach-light))
 	background #bb7a6e
+	transition .3s background ease
 	font-family var(--font-body)
 	font-weight 300
 	position fixed
@@ -29,23 +28,20 @@ body
 
 main
 	fixVH()
-	// background #ddd
 	position relative
 	display grid
-	grid-auto-rows 100px auto 50%
-	border 15px solid white
+	grid-auto-rows 100px auto 45%
+	background white
+	padding 15px
+	// border 15px solid white
 
 	&:before
 		content ''
 		position absolute
-		absolute(0px)
-		// border-radius 15px
-		// background url('./../img/paper.jpg') no-repeat center center / cover
-		background-color var(--peach)
+		absolute(15px)
 		overflow hidden
-		background-blend-mode soft-light
-		// background var(--peach)
-		// animation squiggly-anim 0.34s ease infinite
+		background-color var(--peach)
+		border-radius 15px
 
 	.sections-wrapper
 		width 100%
