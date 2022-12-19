@@ -14,7 +14,6 @@
 
 body
 	color black
-	background #bb7a6e
 	transition .3s background ease
 	font-family var(--font-body)
 	font-weight 300
@@ -25,35 +24,35 @@ body
 	width 100%
 	overflow hidden // disable scroll on safari
 	fixVH()
-
-main
-	fixVH()
-	position relative
-	display grid
-	grid-auto-rows 100px 50%
-	background white
 	padding 15px
 
-	&:before
-		content ''
-		position absolute
-		absolute(15px)
-		overflow hidden
-		background-color var(--peach)
-		border-radius 15px
+main
+	height 100%
+	position relative
+	// display grid
+	// grid-auto-rows 100px 50%
+	background var(--peach)
+	overflow hidden
+	border-radius 15px
+
+	// &:before
+	// 	content ''
+	// 	position absolute
+	// 	absolute(15px)
+	// 	overflow hidden
+	// 	background-color var(--peach)
+	// 	border-radius 15px
 
 	.sections-wrapper
 		width 100%
 		margin auto
+		height calc(55% - 100px)
 		position relative
+		border 1px solid red
 
 	+below(800px, true)
 		display flex
-		// flex-wrap wrap
 		flex-direction column
-
-		.canvas-wrapper-wrapper
-			display grid
 
 .button
 	border 2px solid black

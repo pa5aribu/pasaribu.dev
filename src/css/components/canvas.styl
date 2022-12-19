@@ -21,20 +21,25 @@
 
 .canvas-wrapper
 	display inline-block
-	position fixed
-	bottom -1px
+	position absolute
+	// bottom -1px
+	bottom 0
 	left 50%
 	z-index 50
 	height 45%
+	border 1px solid blue
 	transform translateX(-50%)
-	animation squiggly-anim 0.34s ease infinite
+	// animation squiggly-anim 0.34s ease infinite
 
-	#bhakti
+	.bhakti-wrapper
 		aspect-ratio 4/3
 		height 100%
 		pointer-events none
 		display block
 		margin auto
+
+	#bhakti
+		width 100%
 
 	.resume-wrapper
 		position absolute
@@ -89,9 +94,9 @@
 		top 0
 		margin-top auto
 
-		#bhakti
+		.bhakti-wrapper
 			height auto
 			width 100%
 
-		.resume-wrapper, canvas:not(#bhakti)
+		*:not(.bhakti-wrapper)
 			display none

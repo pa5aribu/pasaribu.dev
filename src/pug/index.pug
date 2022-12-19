@@ -22,16 +22,17 @@ html(lang="en")
 		.cursor.is-dar(style="visibility: hidden")
 			include components/cursor
 
-		.canvas-wrapper
-			canvas#bhakti(width="800" height="600")
-			.resume-wrapper
-				a.resume-link.is-pointer(href="#resume")
-				canvas#resume(width="400" height="400")
-			canvas#books(width="500" height="500")
-			canvas#plants(width="300" height="550")
-			canvas#light(width="400" height="500")
-
 		main#app
+
+			.canvas-wrapper
+				.bhakti-wrapper
+					canvas#bhakti(width="800" height="600")
+				.resume-wrapper
+					a.resume-link.is-pointer(href="#resume")
+					canvas#resume(width="400" height="400")
+				canvas#books(width="500" height="500")
+				canvas#plants(width="300" height="550")
+				canvas#light(width="400" height="500")
 
 			.sections-indicator
 				.section-indicator.is-pointer.is-active intro
